@@ -23,28 +23,48 @@ startButton.addEventListener("click", () => {
 
 window.addEventListener("load", () => {
     p1.style.position = 'absolute'
+    p1.style.width = "150px"
     p1.style.left = '0'
     p1.style.top = '0'
     p2.style.position = 'absolute'
+    p2.style.width = "150px"
     p2.style.left = '0'
     p2.style.top = '0'
 
 })
+function collisionSound(sound) {
+    let soundPlayed = new Audio(sound)
+    soundPlayed.play();
+}
+function checkCollisions() {
+    if (p1.style.left + p1.style.width >= p2.style.left &&
+        p2.style.left + p2.style.width >= p1.style.left &&
+        p1.style.top + p1.style.height >= p2.style.top &&
+        p2.style.top + p2.style.height >= p1.style.top) {
+            collisionSound("/vine-boom.mp3")
+    }
+}
+
+
 
 
 window.addEventListener("keyup", (e) => {
     switch(e.key) {
         case 'ArrowLeft':
             p2.style.left = parseInt(p2.style.left) - bigMoveBy + 'px'
+            checkCollisions()
             break
         case 'ArrowRight':
             p2.style.left = parseInt(p2.style.left) + bigMoveBy + 'px'
+            checkCollisions()
             break
         case 'ArrowUp':
             p2.style.top = parseInt(p2.style.top) - bigMoveBy + 'px'
+            checkCollisions()
             break
         case 'ArrowDown':
             p2.style.top = parseInt(p2.style.top) + bigMoveBy + 'px'
+            checkCollisions()
             break
     }
 })  
@@ -85,4 +105,6 @@ p2Select.addEventListener("change", () => {
     p2Img.src = playerIcons[p2]
     p2SelectImg.src = playerIcons[p2]
 })
+
+
 
