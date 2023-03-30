@@ -20,5 +20,50 @@ body {
     width: 150px;
 }
 
+.titleWrapper {
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    background: rgb(151, 237, 225);
+    top: 0px;
+    left: 0px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.characterWrapper {
+    background-color: orange;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 2% 0%;
+}
+.p1Wrapper,
+.p2Wrapper {
+    width: 50%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+#p1Select,
+#p2Select {
+    margin: 2%;
+}
+
+
+.noDisplay {
+    display: none;
+}
+
+.selectImgWrap {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 
