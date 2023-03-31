@@ -1,5 +1,6 @@
 let p1 = document.getElementById("p1")
 let raul = document.getElementById("p2")
+let tacobell = document.getElementById("taco")
 
 let moveBy = 10
 let bigMoveBy = 100
@@ -24,26 +25,49 @@ startButton.addEventListener("click", () => {
 window.addEventListener("load", () => {
     p1.style.position = 'absolute'
     p1.style.width = "150px"
-    p1.style.left = '0'
-    p1.style.top = '0'
+    p1.style.left = '100px'
+    p1.style.top = '100px'
     p2.style.position = 'absolute'
     p2.style.width = "150px"
-    p2.style.left = '0'
-    p2.style.top = '0'
+    p2.style.left = '1000px'
+    p2.style.top = '100px'
+    tacobell.style.position = 'absolute'
+    tacobell.style.width = "150px"
+    tacobell.style.left = '500px'
+    tacobell.style.top = '300px'
 
 })
-function collisionSound(sound) {
+function playSound(sound) {
     let soundPlayed = new Audio(sound)
     soundPlayed.play();
 }
-function checkCollisions() {
+
+
+
+function checkPlayerCollisions() {
     if (p1.style.left + p1.style.width >= p2.style.left &&
         p2.style.left + p2.style.width >= p1.style.left &&
         p1.style.top + p1.style.height >= p2.style.top &&
         p2.style.top + p2.style.height >= p1.style.top) {
-            collisionSound("/vine-boom.mp3")
+            playSound("/sounds/vine-boom.mp3")
     }
 }
+
+function checkTacoCollisions() {
+    if (p1.style.left + p1.style.width >= tacobell.style.left &&
+        tacobell.style.left + tacobell.style.width >= p1.style.left &&
+        p1.style.top + p1.style.height >= tacobell.style.top &&
+        tacobell.style.top + tacobell.style.height >= p1.style.top) {
+            playSound("/sounds/tacobell.mp3")
+    } else if (p2.style.left + p2.style.width >= tacobell.style.left &&
+        tacobell.style.left + tacobell.style.width >= p2.style.left &&
+        p2.style.top + p2.style.height >= tacobell.style.top &&
+        tacobell.style.top + tacobell.style.height >= p2.style.top) {
+            playSound("/sounds/tacobell.mp3")
+
+    }
+}
+
 
 
 
@@ -62,14 +86,6 @@ window.addEventListener("keyup", (e) => {
         case 'ArrowDown':
             p2.style.top = parseInt(p2.style.top) + bigMoveBy + 'px'
             break
-    }
-    checkCollisions()
-
-})  
-
-
-window.addEventListener("keyup", (e) => {
-    switch(e.key) {
         case 'a':
             p1.style.left = parseInt(p1.style.left) - bigMoveBy + 'px'
             break
@@ -82,17 +98,69 @@ window.addEventListener("keyup", (e) => {
         case 's':
             p1.style.top = parseInt(p1.style.top) + bigMoveBy + 'px'
             break
+        case 'q':
+            if (p1.classList.contains("flipped")) {
+                p1.classList.remove("flipped")
+            } else {
+                p1.classList.add("flipped")
+            }
+            break
+         case 'l':
+            if (p2.classList.contains("flipped")) {
+                p2.classList.remove("flipped")
+            } else {
+                p2.classList.add("flipped")
+            }
+            break
+        case 'e':
+            let i = document.getElementById("characterImgOne")
+            console.log(i.getAttribute("alt"))
+            switch (i.getAttribute("alt")) {
+                case "/images/raul.png":
+                    playSound("/sounds/gabe.mp3")
+                    break
+                case "/images/amogus.png":
+                    playSound("/sounds/amogus.mp3")
+                    break
+                case "/images/cowe.png":
+                    playSound("/sounds/cow.mp3")
+                    break
+                case "/images/shibe.png":
+                    playSound("/sounds/bork.mp3")
+                    break
+                }
+            break
+        case 'p':
+            let j = document.getElementById("characterImgTwo")
+            console.log(j.getAttribute("alt"))
+            switch (j.getAttribute("alt")) {
+                case "/images/raul.png":
+                    playSound("/sounds/gabe.mp3")
+                    break
+                case "/images/amogus.png":
+                    playSound("/sounds/amogus.mp3")
+                    break
+                case "/images/cowe.png":
+                    playSound("/sounds/cow.mp3")
+                    break
+                case "/images/shibe.png":
+                    playSound("/sounds/bork.mp3")
+                    break
+                }
+            break
     }
-    checkCollisions()
+    checkPlayerCollisions()
+    checkTacoCollisions()
+})  
 
-})
+
 
 p1Select.addEventListener("change", () => {
     let p1SelectImg = document.getElementById("selectImgOne");
     let p1Img = document.getElementById("characterImgOne")
     let p1 = p1Select.value
-    console.log()
 
+    p1Img.setAttribute("alt", playerIcons[p1])
     p1Img.src = playerIcons[p1]
     p1SelectImg.src = playerIcons[p1]
 })
@@ -101,6 +169,7 @@ p2Select.addEventListener("change", () => {
     let p2Img = document.getElementById("characterImgTwo")
     let p2 = p2Select.value
 
+    p2Img.setAttribute("alt", playerIcons[p2])
     p2Img.src = playerIcons[p2]
     p2SelectImg.src = playerIcons[p2]
 })
