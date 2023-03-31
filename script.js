@@ -52,21 +52,19 @@ window.addEventListener("keyup", (e) => {
     switch(e.key) {
         case 'ArrowLeft':
             p2.style.left = parseInt(p2.style.left) - bigMoveBy + 'px'
-            checkCollisions()
             break
         case 'ArrowRight':
             p2.style.left = parseInt(p2.style.left) + bigMoveBy + 'px'
-            checkCollisions()
             break
         case 'ArrowUp':
             p2.style.top = parseInt(p2.style.top) - bigMoveBy + 'px'
-            checkCollisions()
             break
         case 'ArrowDown':
             p2.style.top = parseInt(p2.style.top) + bigMoveBy + 'px'
-            checkCollisions()
             break
     }
+    checkCollisions()
+
 })  
 
 
@@ -85,6 +83,7 @@ window.addEventListener("keyup", (e) => {
             p1.style.top = parseInt(p1.style.top) + bigMoveBy + 'px'
             break
     }
+    checkCollisions()
 
 })
 
