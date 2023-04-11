@@ -75,3 +75,6 @@ body {
     transform: rotate(180deg);
 }
 
+.bomb {
+    position: absolute;
+}

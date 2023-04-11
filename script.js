@@ -1,6 +1,7 @@
 let p1 = document.getElementById("p1")
 let raul = document.getElementById("p2")
 let tacobell = document.getElementById("taco")
+let bomb = document.getElementById("kaboom")
 
 let moveBy = 10
 let bigMoveBy = 100
@@ -148,6 +149,20 @@ window.addEventListener("keyup", (e) => {
                     break
                 }
             break
+        case 'h':
+                function randNum() {
+                    let num = Math.ceil(Math.random() * 750)
+                    return num
+                }
+
+                function setDisplayNone(thingy) {
+                    thingy.classList.add("noDisplay")
+                }
+                bomb.style.left = `${randNum()}px`;
+                bomb.style.top = `${randNum()}px`;
+                bomb.classList.remove("noDisplay");
+                playSound("/sounds/kaboom.mp3");
+                setTimeout(setDisplayNone(bomb), 1000)
     }
     checkPlayerCollisions()
     checkTacoCollisions()
