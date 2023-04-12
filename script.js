@@ -162,7 +162,9 @@ window.addEventListener("keyup", (e) => {
                 bomb.style.top = `${randNum()}px`;
                 bomb.classList.remove("noDisplay");
                 playSound("/sounds/kaboom.mp3");
-                setTimeout(setDisplayNone(bomb), 1000)
+                setTimeout(() => {
+                    setDisplayNone(bomb);
+                }, 1000)
     }
     checkPlayerCollisions()
     checkTacoCollisions()
