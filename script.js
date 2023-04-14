@@ -72,21 +72,9 @@ function checkTacoCollisions() {
 
 
 
-
+// Player One
 window.addEventListener("keyup", (e) => {
     switch(e.key) {
-        case 'ArrowLeft':
-            p2.style.left = parseInt(p2.style.left) - bigMoveBy + 'px'
-            break
-        case 'ArrowRight':
-            p2.style.left = parseInt(p2.style.left) + bigMoveBy + 'px'
-            break
-        case 'ArrowUp':
-            p2.style.top = parseInt(p2.style.top) - bigMoveBy + 'px'
-            break
-        case 'ArrowDown':
-            p2.style.top = parseInt(p2.style.top) + bigMoveBy + 'px'
-            break
         case 'a':
             p1.style.left = parseInt(p1.style.left) - bigMoveBy + 'px'
             break
@@ -104,13 +92,6 @@ window.addEventListener("keyup", (e) => {
                 p1.classList.remove("flipped")
             } else {
                 p1.classList.add("flipped")
-            }
-            break
-         case 'l':
-            if (p2.classList.contains("flipped")) {
-                p2.classList.remove("flipped")
-            } else {
-                p2.classList.add("flipped")
             }
             break
         case 'e':
@@ -131,6 +112,41 @@ window.addEventListener("keyup", (e) => {
                     break
                 }
             break
+        
+    }
+    checkPlayerCollisions()
+    checkTacoCollisions()
+})  
+
+// Player 2
+window.addEventListener("keyup", (e) => {
+    switch(e.key) {
+        case 'ArrowLeft':
+            p2.style.left = parseInt(p2.style.left) - bigMoveBy + 'px'
+            break
+        case 'ArrowRight':
+            p2.style.left = parseInt(p2.style.left) + bigMoveBy + 'px'
+            break
+        case 'ArrowUp':
+            p2.style.top = parseInt(p2.style.top) - bigMoveBy + 'px'
+            break
+        case 'ArrowDown':
+            p2.style.top = parseInt(p2.style.top) + bigMoveBy + 'px'
+            break
+        case 'l':
+            if (p2.classList.contains("flipped")) {
+                p2.classList.remove("flipped")
+            } else {
+                p2.classList.add("flipped")
+            }
+            break
+         case 'l':
+            if (p2.classList.contains("flipped")) {
+                p2.classList.remove("flipped")
+            } else {
+                p2.classList.add("flipped")
+            }
+            break
         case 'p':
             let j = document.getElementById("characterImgTwo")
             console.log(j.getAttribute("alt"))
@@ -149,7 +165,19 @@ window.addEventListener("keyup", (e) => {
                     break
                 }
             break
-        case 'h':
+        
+        
+    }
+    checkPlayerCollisions()
+    checkTacoCollisions()
+}) 
+
+
+// Special 
+window.addEventListener("keyup", (e) => {
+    switch(e.key) {
+
+            case 'h':
                 function randNum() {
                     let num = Math.ceil(Math.random() * 750)
                     return num
@@ -166,9 +194,9 @@ window.addEventListener("keyup", (e) => {
                     setDisplayNone(bomb);
                 }, 1000)
     }
-    checkPlayerCollisions()
-    checkTacoCollisions()
-})  
+})
+
+
 
 
 
